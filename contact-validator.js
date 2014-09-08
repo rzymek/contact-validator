@@ -91,7 +91,9 @@ Router.map(function() {
             }
             var resp = this.response;
             this.response.writeHead(200, {'Content-Type': 'text/plain'});
-            Dane.find({email1:'rzymek+p1@gmail.com'}).map(function(it) {
+            Dane.find(
+//                    {email1:'rzymek+p1@gmail.com'}
+            ).map(function(it) {
                 it.to = normalizeEmails(it);
                 return it;
             }).filter(function(it){
@@ -112,10 +114,11 @@ PS. Jeżeli na stronie pojawi się komunikat "This site is down", to wystarczy o
                     subject: 'Lista mailowa grupy 1',
                     text: text
                 };
-                Email.send(email);
+                console.log(email);
+//                Email.send(email);
                 resp.write(it.dziecko+'\n');
             });
-            this.response.end('Done');
+            this.response.end('\nDone');
         }
     });
 });
