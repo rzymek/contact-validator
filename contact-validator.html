@@ -1,0 +1,21 @@
+<head>
+  <title>Grupa I</title>
+</head>
+
+<template name="validate">
+    <h1>{{dziecko}}</h1>
+    Sprawdź czy wszystko się zgadza, ewentualnie popraw i kliknij OK.<br><br>
+    <form>
+    Email 1:<input type="email" name="email1" value="{{email1}}" size="60"><br>
+    Email 2:<input type="email" name="email2" value="{{email2}}" size="60"><br>
+    Telefon 1:<input type="text" name="tel1" value="{{tel1}}" size="60"><br>
+    Telefon 2:<input type="text" name="tel2" value="{{tel2}}" size="60"><br>
+    <input type="submit" value="OK"><br>
+    </form>
+    <textarea placeholder="Uwagi" rows="10" cols="60"></textarea>
+</template>
+
+<template name="thanks">
+    <h2>Dzięki</h2>
+    To wszystko.
+</template>
