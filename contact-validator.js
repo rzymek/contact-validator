@@ -23,6 +23,9 @@ function fmtDate(date) {
             + fmt(2, date.getHours()) + ":" + fmt(2, date.getMinutes());
 };
 Router.map(function() {
+    this.route('root', {
+        path:'/'
+    });
     this.route('validate', {
         path: '/dane/:_id',
         waitOn: function() {
@@ -96,7 +99,7 @@ Router.map(function() {
             }).forEach(function(it) {
                 var text = 'Witam \n\
 \n\
-Pod adresem http://grupa1.meteor.com/dane/' + it._id + ' można sprawdzić i poprawić\n\
+Pod adresem https://grupa1.meteor.com/dane/' + it._id + ' można sprawdzić i poprawić\n\
 maile i numery telefonów, które zbierałem na zebraniu.\n\
 \n\
 Pozdrawiam\n\
