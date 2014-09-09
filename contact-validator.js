@@ -92,7 +92,7 @@ Router.map(function() {
             var resp = this.response;
             this.response.writeHead(200, {'Content-Type': 'text/plain'});
             Dane.find(
-                    {email1:'rzymek+p1@gmail.com'}
+//                    {email1:'rzymek+p1@gmail.com'}
             ).map(function(it) {
                 it.to = normalizeEmails(it);
                 return it;
@@ -101,7 +101,7 @@ Router.map(function() {
             }).forEach(function(it) {
                 var text = 'Witam \n\
 \n\
-Z tej strony Krzysiek z rady rodziców z przedszkola 299. Zakładam listę dyskusyjną dla naszej grupy.\n\
+Z tej strony Krzysiek z Rady Rodziców z przedszkola. Zakładam listę dyskusyjną dla naszej grupy.\n\
 Pod adresem https://grupa1.meteor.com/dane/' + it._id + ' można sprawdzić i poprawić\n\
 maile i numery telefonów, które zbierałem na zebraniu.  Potwierdzone maile dodam do grupy.\n\
 \n\
