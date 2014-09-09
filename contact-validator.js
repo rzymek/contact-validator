@@ -71,7 +71,7 @@ Router.map(function() {
                 this.response.end('Invalid key');
                 return;
             }
-            this.response.writeHead(200, {'Content-Type': 'text/csv'});            
+            this.response.writeHead(200, {'Content-Type': 'text/csv'});
             this.response.end(all().map(function(it,idx){
                 return (idx+1)+','+it.dziecko+','+it.email1+','+
                         it.email2+','+it.tel1+','+it.tel2+','+
@@ -92,7 +92,7 @@ Router.map(function() {
             var resp = this.response;
             this.response.writeHead(200, {'Content-Type': 'text/plain'});
             Dane.find(
-//                    {email1:'rzymek+p1@gmail.com'}
+                    {email1:'rzymek+p1@gmail.com'}
             ).map(function(it) {
                 it.to = normalizeEmails(it);
                 return it;
@@ -101,8 +101,9 @@ Router.map(function() {
             }).forEach(function(it) {
                 var text = 'Witam \n\
 \n\
+Z tej strony Krzysiek z rady rodziców z przedszkola 299. Zakładam listę dyskusyjną dla naszej grupy.\n\
 Pod adresem https://grupa1.meteor.com/dane/' + it._id + ' można sprawdzić i poprawić\n\
-maile i numery telefonów, które zbierałem na zebraniu.\n\
+maile i numery telefonów, które zbierałem na zebraniu.  Potwierdzone maile dodam do grupy.\n\
 \n\
 Pozdrawiam\n\
 Krzysiek Rzymkowski\n\
@@ -114,8 +115,7 @@ PS. Jeżeli na stronie pojawi się komunikat "This site is down", to wystarczy o
                     subject: 'Lista mailowa grupy 1',
                     text: text
                 };
-                console.log(email);
-//                Email.send(email);
+                Email.send(email);
                 resp.write(it.dziecko+'\n');
             });
             this.response.end('\nDone');
@@ -150,7 +150,8 @@ if (Meteor.isServer) {
     Meteor.startup(function() {
         if (Dane.find().count() === 0) {
             Assets.getText('input.csv').split('\n').filter(function(it, idx) {
-                return idx !== 0;
+                console.log(idx,it);
+                return idx !== 0 && it.trim().length > 0;
             }).map(function(line) {
                 var row = line.split(',');
                 return {
@@ -161,6 +162,7 @@ if (Meteor.isServer) {
                     tel2: row[5]
                 };
             }).forEach(function(it) {
+                console.log(it);
                 Dane.insert(it);
             });
         }
